@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}My Notes{% endblock %} {% block content%}
+
+<h1 align="center" style="padding-top: 15px;">My Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+  
+  {% for note in user.notes[::-1] %}
+  <li class="list-group-item">
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{note.head}}</h5>
+        <small>{{note.date}}</small>
+      </div>
+      <p class="mb-1">{{note.data}}</p>
+      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+        <span title="Delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+        </svg>
+      </span>
+      </button>
+    </a>
+
+  </li>
+  {%else%}
+  <h4 style="font-weight: lighter;">You have 0 notes...</h4>
+
+  {% endfor %}
+</ul>
+{% endblock %}
